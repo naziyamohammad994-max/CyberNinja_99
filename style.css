@@ -1,0 +1,334 @@
+:root {
+    --bg-color: #0f111a;
+    --card-bg: #1a1d2d;
+    --primary: #ff2a6d;
+    --secondary: #05d9e8;
+    --tertiary: #01ffc3;
+    --text-main: #ffffff;
+    --text-muted: #8b92b2;
+    --card-border: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(255, 42, 109, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(5, 217, 232, 0.15), transparent 25%);
+}
+
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 1.5rem;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.bento-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.bento-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bento-item:hover::before {
+    opacity: 1;
+}
+
+h3 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    background: linear-gradient(90deg, #fff, var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Specific Card Layouts */
+.profile {
+    grid-column: span 2;
+    grid-row: span 2;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(145deg, #1a1d2d, #141624);
+}
+
+.avatar-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--tertiary));
+    margin-bottom: 1.5rem;
+}
+
+.avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+}
+
+.profile h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile p {
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.badges {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.badge.pro {
+    background: rgba(255, 42, 109, 0.15);
+    color: var(--primary);
+    border: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.badge.vip {
+    background: rgba(1, 255, 195, 0.15);
+    color: var(--tertiary);
+    border: 1px solid rgba(1, 255, 195, 0.3);
+}
+
+.stats {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.trend.positive {
+    color: var(--tertiary);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.recent-matches {
+    grid-column: span 1;
+    grid-row: span 2;
+    justify-content: flex-start;
+}
+
+.match-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.match-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+}
+
+.match-list .result {
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.win .result { color: var(--tertiary); }
+.loss .result { color: var(--primary); }
+
+.match-list .score {
+    font-weight: 600;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.match-list .game {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.trophies {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.trophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.trophy {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.trophy:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.1);
+}
+
+.playtime {
+    grid-column: span 2;
+    grid-row: span 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chart-mockup {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 60px;
+}
+
+.bar {
+    width: 12px;
+    background: linear-gradient(to top, var(--secondary), rgba(5,217,232,0.2));
+    border-radius: 4px 4px 0 0;
+}
+.h-1 { height: 20%; }
+.h-2 { height: 40%; }
+.h-3 { height: 60%; }
+.h-4 { height: 75%; }
+.h-5 { height: 90%; }
+.h-6 { height: 100%; }
+
+.quest {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.quest p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #ff758c);
+    border-radius: 4px;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    color: var(--primary);
+    text-align: right;
+    font-weight: 800;
+}
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+    .bento-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .playtime {
+        grid-column: span 3;
+    }
+    .recent-matches {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    .match-list {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .match-list li {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .bento-container {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    
+    .profile, .stats, .recent-matches, .trophies, .playtime, .quest {
+        grid-column: span 1;
+        grid-row: auto;
+        min-height: 200px;
+    }
+
+    .playtime {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .match-list {
+        flex-direction: column;
+    }
+}
